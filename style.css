@@ -21,13 +21,12 @@ input[type=checkbox]:checked + label:before { letter-spacing: 5px; }
     border: none;
     cursor: pointer;
     display: inline-block;
-    float: left;
     height: 24px;
     padding: 3px 5px;
     width: 28px;
     transition: transform .2s;
 }
-.box:focus{
+.box:focus,pre:focus{
   outline: none;
 }
 .box:hover {
