@@ -1,0 +1,47 @@
+.textBox {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: auto;
+    overflow-y: scroll;
+  }
+  label { font-size: 24px; }
+  input[type=checkbox] { display:none; }
+  input[type=checkbox] + label:before {
+    font-family: FontAwesome;
+    display: inline-block;
+  }
+
+input[type=checkbox] + label:before { content: "\f096"; }
+input[type=checkbox] + label:before { letter-spacing: 10px; }
+
+input[type=checkbox]:checked + label:before { content: "\f046"; }
+input[type=checkbox]:checked + label:before { letter-spacing: 5px; }
+.box{
+  background: none;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    height: 24px;
+    padding: 3px 5px;
+    width: 28px;
+    transition: transform .2s;
+}
+.box:focus{
+  outline: none;
+}
+.box:hover {
+  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+.formatting-wrapper{
+  display: flex;
+  width: 720px;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  flex-wrap: wrap;
+  height: 110px;
+  margin: auto;
+}
+.box.active{
+  background: lightgray;
+}
