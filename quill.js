@@ -1,8 +1,7 @@
 (function($){
     $.fn.quill = quillInit;
     var quillBox;
-
-
+    var filterHoverClassEle = ['justifyleft','justifycenter','justifyright']
 
     function quillInit(){
         var this$ = $(this);
@@ -37,27 +36,33 @@
         var formatImg = [
             {
                 imgUrl:"https://cdn4.iconfinder.com/data/icons/proglyphs-editor/512/Bold-512.png",
-                id:'bold'
+                id:'bold',
+                canApplyHover : true
             },
             {
                 imgUrl: "https://cdn4.iconfinder.com/data/icons/proglyphs-editor/512/Italic-512.png",
-                id:'italic'
+                id:'italic',
+                canApplyHover : true
             },
             {
                 imgUrl: "http://icons.iconarchive.com/icons/icons8/ios7/256/Editing-Underline-icon.png",
-                id:'underline'
+                id:'underline',
+                canApplyHover : true
             },
             {
                 imgUrl: "https://cdn2.iconfinder.com/data/icons/text-editing-1/100/text_editing-12-512.png",
-                id:'justifyleft'
+                id:'justifyleft',
+                canApplyHover : false
             },
             {
                 imgUrl: "https://cdn2.iconfinder.com/data/icons/text-format/64/_Align_Center-512.png",
-                id:'justifycenter'
+                id:'justifycenter',
+                canApplyHover : false
             },
             {
                 imgUrl: "https://cdn2.iconfinder.com/data/icons/text-editing-1/100/text_editing-14-512.png",
-                id:'justifyright'
+                id:'justifyright',
+                canApplyHover : false
             }
         ]
         var formattingWrapper = $('<div></div>').addClass('formatting-wrapper');
@@ -65,6 +70,9 @@
             var box = $('<button></button>').addClass('box').attr({
                 id:img.id
             });
+            if(filterHoverClassEle.indexOf(img.id)>=0){
+                box[0].classList.add('format')
+            }
             box[0].onclick= onClickFormatDoc;
             var svg = $('<img/>').attr({
                 src:img.imgUrl,
@@ -78,8 +86,8 @@
 
     function onClickFormatDoc(){
         var self = $(this)[0]
-        document.execCommand(self.id, false, 'div');
-        if(!self.classList.contains('active')){
+        document.execCommand(self.id);
+        if(!self.classList.contains('active') && filterHoverClassEle.indexOf(self.id) == -1){
             $(this).addClass('active')
         }
         else{
